@@ -36,25 +36,49 @@
 <body>
 <main>
 <h1>ShieldVPN Privacy Policy</h1>
-<p><em>Last updated: 24 November 2026</em></p>
+<p><em>Last updated: 27 November 2026</em></p>
 <p>This policy describes the ShieldVPN Android app (<code>com.shieldvpn.android</code>). ShieldVPN is an
 OpenVPN-based VPN client: it contains an OpenVPN engine, but it does <strong>not</strong> operate VPN
-servers. You connect through third-party VPN servers run by independent operators, using an
-OpenVPN profile (<code>.ovpn</code>) you supply. This policy is written to be accurate, not reassuring:
+servers. You connect through third-party VPN servers run by independent operators: either by
+supplying an OpenVPN profile (<code>.ovpn</code>) yourself, or by choosing a volunteer server from the
+list the app fetches from VPN Gate (see "Server discovery" below). This policy is written to be accurate, not reassuring:
 where a limit exists, it says so.</p>
 <h2>What the app collects</h2>
 <p><strong>Nothing.</strong> ShieldVPN has no user accounts, no analytics SDK, no advertising SDK, and no
 backend server operated by us. The app sends us no data of any kind.</p>
 <h2>What is stored on your device</h2>
 <ul>
-<li>The OpenVPN profile you supply is <strong>not stored</strong>. It is processed on your device and held
-in memory only while you connect; it is never written to disk, and the app does not send
-it anywhere.</li>
-<li>App settings: theme choice, onboarding completion, and your acceptance of the in-app VPN
-disclosure.</li>
+<li><strong>Profiles you supply are not stored.</strong> An OpenVPN profile (<code>.ovpn</code>) you import is
+processed on your device and held in memory only while you connect; it is never written
+to disk, and the app does not send it anywhere. The same applies to the server you select
+from the VPN Gate list and to any credentials a connection uses: they are held in memory
+only.</li>
+<li><strong>Server-list cache.</strong> The app keeps a copy of the VPN Gate server list in its private
+cache directory, so it can still show you the last list when a refresh fails. The cache
+contains the validated server entries exactly as VPN Gate publishes them — including each
+server's published OpenVPN profile text (these are VPN Gate's public profiles, not your
+data). The cache is replaced on every successful refresh, and you can delete it at any
+time by clearing the app's cache in Android settings.</li>
+<li><strong>Server-test results.</strong> When you test a server from the list, the app stores the test
+result locally: the server's endpoint (address, port and protocol), whether the test
+succeeded, the type of failure if it failed, and the time of the test. Results are
+treated as out of date after six hours.</li>
+<li><strong>Excluded apps.</strong> If you choose apps to exclude from the VPN, their package names are
+stored locally so the setting is remembered.</li>
+<li><strong>App settings:</strong> theme choice, onboarding completion, your acceptance of the in-app VPN
+disclosures, and your auto-connect preferences (whether auto-connect is on, and which
+network type it applies to).</li>
 </ul>
-<p>Uninstalling the app deletes all of the above. There is no built-in server list and no
-automatic server discovery in the app.</p>
+<p>Uninstalling the app deletes all of the above.</p>
+<h2>Server discovery (VPN Gate)</h2>
+<p>ShieldVPN does not operate servers and ships with no built-in server list. When you open
+the server browser or refresh the list, the app downloads the current list of volunteer
+servers from VPN Gate's official endpoint, <code>https://www.vpngate.net/api/iphone/</code>.</p>
+<p>That request is made over your normal internet connection, <strong>before any VPN tunnel
+exists</strong>, so VPN Gate — and your own network provider — can see your device's public IP
+address, the time of the request, and basic network information, just as with any website
+you visit. The app sends no account, name or device identifier with the request. The app
+asks for your confirmation before the first such download, and explains this there too.</p>
 <h2>VPN connection processing</h2>
 <p>When you connect, this device's IP traffic is routed through an encrypted OpenVPN tunnel to
 the server named in the profile you supply. Encryption happens on your device with the
@@ -92,8 +116,9 @@ If the check fails, the app shows no IP rather than guessing.</p>
 by that operator.</p>
 <h2>Your rights</h2>
 <p>Because no personal data is collected by the app, there is nothing held about you to access,
-correct, export or delete on our side. No profiles are stored; local app settings are removed
-when you uninstall the app.</p>
+correct, export or delete on our side. Profiles you supply are never stored; the other local
+items listed above (server-list cache, server-test results, excluded-apps list and settings)
+stay on your device and are removed when you uninstall the app.</p>
 <h2>No anonymity guarantee</h2>
 <p>A VPN does not guarantee complete anonymity. It encrypts traffic between your device and the
 VPN server and changes the IP address websites see. Websites and apps you sign in to can still
